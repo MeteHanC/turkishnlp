@@ -1,0 +1,8 @@
+README.md
+setup.py
+turkishnlp/__init__.py
+turkishnlp/detector.py
+turkishnlp.egg-info/PKG-INFO
+turkishnlp.egg-info/SOURCES.txt
+turkishnlp.egg-info/dependency_links.txt
+turkishnlp.egg-info/top_level.txt

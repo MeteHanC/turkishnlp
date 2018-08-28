@@ -1,10 +1,10 @@
 from distutils.core import setup
-
+import setuptools
 setup(
     name='turkishnlp',
-    version='0.0.1',
-    packages=['detector', 're', 'pickle', 'os', 'sys', 'urllib.request', 'collections'],
-    url='github',
+    version='0.0.3',
+    packages=['turkishnlp'],
+    url='https://github.com/MeteHanC/turkishnlp',
     license='MIT',
     author='Metehan Cetinkaya',
     author_email='metehancet@gmail.com',

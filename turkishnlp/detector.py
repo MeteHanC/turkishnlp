@@ -164,13 +164,5 @@ class TurkishNLP:
         return set(deletes + transposes + replaces + inserts)
 
 
-obj = TurkishNLP()
-#obj.download()
-obj.create_word_set()
-print(obj.is_turkish("Merhaba ben metehan bugün ankaraya gideceğim, siz ne yapmayı düşünüyorsunuz?"))
-lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir, ankradan geleğceim bugnü ydaa yarrın")
-correct_words = obj.auto_correct(lwords)
-print(correct_words)
-print(obj.is_turkish(correct_words))
 
 
