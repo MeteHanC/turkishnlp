@@ -1,4 +1,4 @@
-
+#TurkishNLP. Thanks to Norvig's typo correction notes.
 import re
 import pickle
 import os
