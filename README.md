@@ -1,4 +1,6 @@
-# Turkish NLP
+Not : Türkçe dökümantasyon aşağıdadır.
+
+# Turkish NLP with Python
 
 Very early version of the TurkishNLP. For now it has basically 2 main functions; Detecting Turkish Language and correcting typos in Turkish words.
 
@@ -6,16 +8,114 @@ Very early version of the TurkishNLP. For now it has basically 2 main functions;
 Dataset was created by parsing and filtering a Turkish wikipedia dump. 
 
 ## Getting Started
+To get started first you need to install the package. With using pip;
+```
+pip install turkishnlp
+```
+After installing the package succesfully try and import the package.
 
-
-
+```
+import turkishnlp
+```
 ### Downloading the data
+To download the data first we need to create an instance of TurkishNLP class. So we need to ;
+```
+from turkishnlp import detector
+obj = detector.TurkishNLP()
+```
+After creating the instance we can simply call the download function like this;
+
+```
+obj.download()
+```
+It will take shortly and after the download it will print out "Download succesful". You won't have to download the data again.
+
+### Creating the wordset
+To create the wordset from data you need to ;
+```
+obj.create_word_set()
+```
+And it will create the wordset and necesary dictionaries.
+
+### Example Usage
+So there are 2 main functions, detecting if the language is Turkish and Turkish typo correction. For detecting the language;
+```
+print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
+```
+Will return us "True" along with the accuracy point which is 0.85
+
+For the other function which is "Typo Correction", you can simply do;
+
+```
+lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
+print(obj.auto_correct(lwords))
+```
+Which will print out ['veri', 'kümesi', 'idare', 'eder', 'ancak', 'daha', 'güzel', 'olabilir']. "List_words" method simply splits the text by words with the help of regex. You can simply use "join" to make it a sentence again like this;
+
+```
+lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
+corrected_words = obj.auto_correct(lwords)
+corrected_string = " ".join(corrected_words)
+```
+Which will print out 'veri kümesi idare eder ancak daha güzel olabilir'. 
 
 
+# Python ile Türkçe Dil İşleme
 
+TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme ve Türkçe yazım hatalarını düzeltme olmak üzere 2 ana fonksiyonu var
 
-### Usage
+## Veri
+Veri kümesi wikipedia'nın Türkçe dump'ı parselanıp temizlenerek oluşturuldu.
 
+## Başlarken
+Öncelikle başlamadan, pip ile kütüphaneyi yüklemeniz gerekiyor. Şu şekilde;
+```
+pip install turkishnlp
+```
+Yükledikten sonra kütüphaneyi şu şekilde import etmeyi deneyin;
 
+```
+import turkishnlp
+```
+### Veriyi indirmek
+Veriyi indirmek için önce TurkishNLP sınıfından türetilmiş bir obje oluşturmamız lazım;
+```
+from turkishnlp import detector
+obj = detector.TurkishNLP()
+```
+Objeyi oluşturduktan sonra indirme metodunu şu şekilde çağırarak indirme işlemini başlatabiliriz ;
 
+```
+obj.download()
+```
+İndirme işlemi çok uzun sürmeden bitecek ve ardından "Download Succesful" yani indirme başarılı manasına gelen bir yazı ekrana basılacak
+
+### Verisetini oluşturmak
+İndirdiğimiz veriden kodun içinde kullanacağımız verisetlerini oluşturmak için basitce;
+```
+obj.create_word_set()
+```
+Yapıyoruz ve işlem tamamlanmış oluyor
+
+### Örnek Kullanım
+Başlıkta da belirttiğim gibi temel olarak 2 metod var. Türkçe dil tespitinin kullanımı için ;
+```
+print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
+```
+Yaptığında göreceğiz ki, ekrana "True" bastırıyor ve doğruluk oranı olarak 0.85 döndürüyor.
+
+Yazım hatası düzeltme fonksiyonu için ;
+
+```
+lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
+print(obj.auto_correct(lwords))
+```
+Yapıyoruz ve sonuç olarak bize ['veri', 'kümesi', 'idare', 'eder', 'ancak', 'daha', 'güzel', 'olabilir'] listesi veriliyor. Burada "list_words" metodunun yaptığı string olarak gelen texti regex yardımıyla kelimelerine ayırmaktır Kelimeleri birleştirmek için Python'ın "join" metodu kullanılabilir. Örneğin;
+
+```
+lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
+corrected_words = obj.auto_correct(lwords)
+corrected_string = " ".join(corrected_words)
+```
+Yazdıracağı sonuç : 'veri kümesi idare eder ancak daha güzel olabilir'. 
 
