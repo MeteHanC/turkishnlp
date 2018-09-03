@@ -1,4 +1,4 @@
-#TurkishNLP. Thanks to Norvig's typo correction notes.
+
 import re
 import pickle
 import os
@@ -10,8 +10,13 @@ import urllib.request
 class TurkishNLP:
 
     def __init__(self):
+        """
+        Initiating the class.
+        """
         self.all_words = None
-        self.alphabet = 'abcçdefgğhiıjklmnoöpqrsştuüvwxyz-:= '
+        self.alphabet = {'a', 'b', 'c', 'ç', 'd', 'e', 'f', 'g', 'ğ', 'h', 'i', 'ı', 'j', 'k', 'l', 'm',
+                         'n', 'o', 'ö', 'p', 'q', 'r', 's', 'ş', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z', '-',
+                                                                                                    ':', '='}
         self.counted_words = None
 
     def create_word_set(self):
@@ -19,7 +24,7 @@ class TurkishNLP:
         Executed at the initiation function
         :return: Returns the words list which is read from the "kelimeler.txt" file
         """
-        dir = self.get_directory()
+        dir = self.__get_directory()
         if os.path.isfile(dir + "/words.pkl"):
             with open(dir + "/words.pkl", "rb") as f:
                 word_set = pickle.load(f)
@@ -43,17 +48,17 @@ class TurkishNLP:
         Downloading data to the spesific directory
         :return:
         """
-        dir = self.get_directory()
+        dir = self.__get_directory()
 
         if not os.path.exists(dir):
             os.makedirs(dir)
 
         urllib.request.urlretrieve("http://metehancetinkaya.com/datanlp/words.pkl", dir + "/words.pkl")
         urllib.request.urlretrieve("http://metehancetinkaya.com/datanlp/words_counted.pkl", dir + "/words_counted.pkl")
-        print("Succesfully Downloaded")
+        print("Download is successful")
 
     @staticmethod
-    def get_directory():
+    def __get_directory():
         """
 
         :return: Return the target directory depending on the OS
@@ -80,7 +85,7 @@ class TurkishNLP:
         return re.findall("[a-z,öçüğış]+", text.lower())
 
     @staticmethod
-    def splits(word):
+    def __splits(word):
         return [(word[:i], word[i:])
                 for i in range(len(word) + 1)]
 
@@ -110,22 +115,22 @@ class TurkishNLP:
         return self.__detect_it(input_text)
 
     def auto_correct(self, word_list):
-        return list(map(self.correct, word_list))
+        return list(map(self.__correct, word_list))
 
-    def correct(self, word):
+    def __correct(self, word):
         """
 
         :param word: Single word to be checked and corrected if needed
         :return: Returns the possible corrected word
         Try to find the best spelling correction for this word
         """
-        candidates = (self.known(self.__edits0(word)) or
-                      self.known(self.__edits1(word)) or
-                      self.known(self.__edits2(word)) or
+        candidates = (self.__known(self.__edits0(word)) or
+                      self.__known(self.__edits1(word)) or
+                      self.__known(self.__edits2(word)) or
                       [word])
         return max(candidates, key=self.counted_words.get)
 
-    def known(self, words):
+    def __known(self, words):
         """
 
         :param words: Word to be checked
@@ -156,13 +161,11 @@ class TurkishNLP:
         :return: Return all posibilities of strings that are one edit away from this word
         It simply generates all the possibilities with this function.
         """
-        pairs = self.splits(word)
+        pairs = self.__splits(word)
         deletes = [a + b[1:] for (a, b) in pairs if b]
         transposes = [a + b[1] + b[0] + b[2:] for (a, b) in pairs if len(b) > 1]
         replaces = [a + c + b[1:] for (a, b) in pairs for c in self.alphabet if b]
         inserts = [a + c + b for (a, b) in pairs for c in self.alphabet]
         return set(deletes + transposes + replaces + inserts)
-
-
 
 
