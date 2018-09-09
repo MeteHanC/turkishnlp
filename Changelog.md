@@ -5,9 +5,11 @@
 
 #### New features 
 
-Added syllabication and syllabication_sentence methods. You can syllabicate a sentence or a single word. 
+- Added syllabication and syllabication_sentence methods. You can syllabicate a sentence or a single word. 
 
-Converted some lists to sets in order to improve performance.
+- Converted some lists to sets in order to improve performance.
+
+- Mangled some functions which are not necessary to be accessed by the user.
 
  ## 0.0.3
  
