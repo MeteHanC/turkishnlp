@@ -66,7 +66,7 @@ Which will print out 'veri kümesi idare eder ancak daha güzel olabilir'.
 ### Syllabication
 
 ```
-obj.syllabicate_sentence("Hiç unutmadım, doğudan esen bir yel saçlarını dalgalandırıyordu")
+obj.syllabicate_sentence("Hiç unutmadım, doğudan esen hafif bir yel saçlarını dalgalandırıyordu")
 ```
 And it will give you ;
 
@@ -136,7 +136,7 @@ Yazdıracağı sonuç : 'veri kümesi idare eder ancak daha güzel olabilir'.
 
 ### Hecelere Ayırmak 
 ```
-obj.syllabicate_sentence("Hiç unutmadım, doğudan esen bir yel saçlarını dalgalandırıyordu")
+obj.syllabicate_sentence("Hiç unutmadım, doğudan esen hafif bir yel saçlarını dalgalandırıyordu")
 ```
 Yapıyoruz. Ve dönen sonuç;
 
