@@ -1,8 +1,10 @@
+TurkishNLP
+============
 Not : Türkçe dökümantasyon aşağıdadır.
 
 # Turkish NLP with Python
 
-Very early version of the TurkishNLP. For now it has basically 2 main functions; Detecting Turkish Language and correcting typos in Turkish words.
+Very early version of the TurkishNLP. For now it has basically 3 main functions; Detecting Turkish Language, correcting typos and syllabication in Turkish words.
 
 ## Dataset
 Dataset was created by parsing and filtering a Turkish wikipedia dump. 
@@ -38,7 +40,7 @@ obj.create_word_set()
 And it will create the wordset and necesary dictionaries.
 
 ### Example Usage
-So there are 2 main functions, detecting if the language is Turkish and Turkish typo correction. For detecting the language;
+So there are 3 main functions, detecting if the language is Turkish, Turkish typo correction and syllabication. For detecting the language;
 ```
 print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
 ```
@@ -59,10 +61,17 @@ corrected_string = " ".join(corrected_words)
 ```
 Which will print out 'veri kümesi idare eder ancak daha güzel olabilir'. 
 
+For syllabication;
+```
+obj.syllabicate_sentence("Hiç unutmadım, doğudan esen bir yel saçlarını dalgalandırıyordu")
+```
+And it will give you ;
+
+"[['hiç'], ['u', 'nut', 'ma', 'dım,'], ['do', 'ğu', 'dan'], ['e', 'sen'], ['ha', 'fif'], ['bir'], ['yel'], ['saç', 'la', 'rı', 'nı'], ['dal', 'ga', 'lan', 'dı', 'rı', 'yor', 'du']]"
 
 # Python ile Türkçe Dil İşleme
 
-TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme ve Türkçe yazım hatalarını düzeltme olmak üzere 2 ana fonksiyonu var
+TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Türkçe yazım hatalarını düzeltme ve kelimeleri hecelere ayrıma olmak üzere 3 ana fonksiyonu var
 
 ## Veri
 Veri kümesi wikipedia'nın Türkçe dump'ı parselanıp temizlenerek oluşturuldu.
@@ -98,7 +107,7 @@ obj.create_word_set()
 Yapıyoruz ve işlem tamamlanmış oluyor
 
 ### Örnek Kullanım
-Başlıkta da belirttiğim gibi temel olarak 2 metod var. Türkçe dil tespitinin kullanımı için ;
+Başlıkta da belirttiğim gibi temel olarak 3 metod var. Türkçe dil tespitinin kullanımı için ;
 ```
 print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
 ```
@@ -119,3 +128,9 @@ corrected_string = " ".join(corrected_words)
 ```
 Yazdıracağı sonuç : 'veri kümesi idare eder ancak daha güzel olabilir'. 
 
+Bir cümleyi oluşturan kelimeleri hecelerine ayrıma için;
+```
+obj.syllabicate_sentence("Hiç unutmadım, doğudan esen bir yel saçlarını dalgalandırıyordu")
+```
+Yapıyoruz. Ve dönen sonuç;
+"[['hiç'], ['u', 'nut', 'ma', 'dım,'], ['do', 'ğu', 'dan'], ['e', 'sen'], ['ha', 'fif'], ['bir'], ['yel'], ['saç', 'la', 'rı', 'nı'], ['dal', 'ga', 'lan', 'dı', 'rı', 'yor', 'du']]"

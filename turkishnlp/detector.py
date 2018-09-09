@@ -17,6 +17,7 @@ class TurkishNLP:
         self.alphabet = {'a', 'b', 'c', 'ç', 'd', 'e', 'f', 'g', 'ğ', 'h', 'i', 'ı', 'j', 'k', 'l', 'm',
                          'n', 'o', 'ö', 'p', 'q', 'r', 's', 'ş', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z', '-',
                                                                                                     ':', '='}
+        self.vowels = {'a', 'ı', 'o', 'u', 'e', 'i', 'ö', 'ü'}
         self.counted_words = None
 
     def create_word_set(self):
@@ -168,4 +169,54 @@ class TurkishNLP:
         inserts = [a + c + b for (a, b) in pairs for c in self.alphabet]
         return set(deletes + transposes + replaces + inserts)
 
+    def syllabicate(self, word):
+        """
 
+        :param word: The word to be syllabicated
+        :return: The syllabicated list that contains syllabs
+        """
+        word = word.lower()
+        syllabs = []
+        syllab = ""
+        keep_index = 0
+        last_was_vowel = False
+        next_is_vowel = False
+
+        for let_ind in range(len(word)):
+            if let_ind != len(word) - 1:
+                if word[let_ind + 1] in self.vowels:
+                    next_is_vowel = True
+                else:
+                    next_is_vowel = False
+            else:
+                syllab = word[keep_index:]
+                syllabs.append(syllab)
+                break
+
+            if next_is_vowel and not last_was_vowel and syllab:
+                syllabs.append(syllab)
+                syllab = ""
+                keep_index = let_ind
+
+            elif next_is_vowel and word[let_ind] not in self.vowels and syllab:
+                syllabs.append(syllab)
+                syllab = ""
+                keep_index = let_ind
+
+            syllab += word[let_ind]
+
+            if word[let_ind] in self.vowels:
+                last_was_vowel = True
+            else:
+                last_was_vowel = False
+
+        return syllabs
+
+    def syllabicate_sentence(self, sentence):
+        """
+
+        :param sentence: The sentence is going to get its words syllabicated
+        :return: The syllabicated 2D list
+        """
+        words_list = self.list_words(sentence)
+        return list(map(self.syllabicate, words_list))
