@@ -39,13 +39,15 @@ obj.create_word_set()
 And it will create the wordset and necesary dictionaries.
 
 ### Example Usage
-So there are 3 main functions, detecting if the language is Turkish, Turkish typo correction and syllabication. For detecting the language;
+So there are 3 main functions, detecting if the language is Turkish, Turkish typo correction and syllabication.
+
+### Language Detection
 ```
 print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
 ```
 Will return us "True" along with the accuracy point which is 0.85
 
-For the other function which is "Typo Correction", you can simply do;
+### Typo Correction
 
 ```
 lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
@@ -60,7 +62,8 @@ corrected_string = " ".join(corrected_words)
 ```
 Which will print out 'veri kümesi idare eder ancak daha güzel olabilir'. 
 
-For syllabication;
+### Syllabication
+
 ```
 obj.syllabicate_sentence("Hiç unutmadım, doğudan esen bir yel saçlarını dalgalandırıyordu")
 ```
@@ -106,13 +109,16 @@ obj.create_word_set()
 Yapıyoruz ve işlem tamamlanmış oluyor
 
 ### Örnek Kullanım
-Başlıkta da belirttiğim gibi temel olarak 3 metod var. Türkçe dil tespitinin kullanımı için ;
+Başlıkta da belirttiğim gibi temel olarak 3 metod var.
+
+### Türkçe Dil Tespiti
+
 ```
 print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
 ```
 Yaptığında göreceğiz ki, ekrana "True" bastırıyor ve doğruluk oranı olarak 0.85 döndürüyor.
 
-Yazım hatası düzeltme fonksiyonu için ;
+### Yazım Hatası Düzeltme
 
 ```
 lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
@@ -127,9 +133,10 @@ corrected_string = " ".join(corrected_words)
 ```
 Yazdıracağı sonuç : 'veri kümesi idare eder ancak daha güzel olabilir'. 
 
-Bir cümleyi oluşturan kelimeleri hecelerine ayrıma için;
+### Hecelere Ayırmak 
 ```
 obj.syllabicate_sentence("Hiç unutmadım, doğudan esen bir yel saçlarını dalgalandırıyordu")
 ```
 Yapıyoruz. Ve dönen sonuç;
+
 "[['hiç'], ['u', 'nut', 'ma', 'dım,'], ['do', 'ğu', 'dan'], ['e', 'sen'], ['ha', 'fif'], ['bir'], ['yel'], ['saç', 'la', 'rı', 'nı'], ['dal', 'ga', 'lan', 'dı', 'rı', 'yor', 'du']]"
