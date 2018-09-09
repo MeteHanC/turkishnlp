@@ -1,5 +1,4 @@
-TurkishNLP
-============
+
 Not : Türkçe dökümantasyon aşağıdadır.
 
 # Turkish NLP with Python
