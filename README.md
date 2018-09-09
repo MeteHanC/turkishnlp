@@ -1,5 +1,6 @@
 
 Not : Türkçe dökümantasyon aşağıdadır.
+See [Change Log](Changelog.md)
 
 # Turkish NLP with Python
 
