@@ -1,6 +1,11 @@
 
 Not : Türkçe dökümantasyon aşağıdadır.
+
 See [Change Log](Changelog.md)
+
+Note that version 0.0.4 is not published on Pypi so that syllabication is not available on current pip release yet. You can still download it manually and use syllabication
+
+Versiyon 0.0.4 henüz Pypi da yayınlanmadığından, heceleme şu anki pip versiyonunda kullanılabilir değil. Yine de kendiniz GitHub üzerinden projeyi indirip hecelemeyi kullanabilirsiniz
 
 # Turkish NLP with Python
 
