@@ -169,6 +169,14 @@ class TurkishNLP:
         inserts = [a + c + b for (a, b) in pairs for c in self.alphabet]
         return set(deletes + transposes + replaces + inserts)
 
+    def __is_vowel(self, char):
+        """
+
+        :param char: Char to be checked
+        :return: Return True if char is vowel and False if not
+        """
+        return char in self.vowels
+
     def syllabicate(self, word):
         """
 
@@ -178,37 +186,24 @@ class TurkishNLP:
         word = word.lower()
         syllabs = []
         syllab = ""
-        keep_index = 0
         last_was_vowel = False
+        keep_index = 0
         next_is_vowel = False
 
-        for let_ind in range(len(word)):
-            if let_ind != len(word) - 1:
-                if word[let_ind + 1] in self.vowels:
-                    next_is_vowel = True
-                else:
-                    next_is_vowel = False
-            else:
-                syllab = word[keep_index:]
-                syllabs.append(syllab)
-                break
+        for pos, char in enumerate(word[:-1]):
 
-            if next_is_vowel and not last_was_vowel and syllab:
+            next_is_vowel = self.__is_vowel(word[pos + 1])
+
+            if next_is_vowel and syllab and not (last_was_vowel and self.__is_vowel(char)):
                 syllabs.append(syllab)
+                keep_index = pos
                 syllab = ""
-                keep_index = let_ind
 
-            elif next_is_vowel and word[let_ind] not in self.vowels and syllab:
-                syllabs.append(syllab)
-                syllab = ""
-                keep_index = let_ind
+            syllab += char
 
-            syllab += word[let_ind]
+            last_was_vowel = self.__is_vowel(char)
 
-            if word[let_ind] in self.vowels:
-                last_was_vowel = True
-            else:
-                last_was_vowel = False
+        syllabs.append(word[keep_index:])
 
         return syllabs
 
