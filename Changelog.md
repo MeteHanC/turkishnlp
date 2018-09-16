@@ -1,7 +1,7 @@
   CHANGELOG
   ==========
   
-  ## 0.0.5 (WIP)
+  ## 0.0.5
 
 #### New features 
 
