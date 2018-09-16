@@ -187,7 +187,7 @@ obj.is_vowel_harmonic("Belki")
 ```
 'belki' kelimesi büyük ünlü uyumuna uyduğundan bu işlem bize True döndürecektir
 
-### Is Turkish Origin
+### Türkçe Köken Kontrolü
 
 Bir kelimenin Türkçe kökenli olup olmadığını öğrenmek için çeşitli kurallar var. turkishnlp kütüphanesiyle 'program' kelimesinin türkçe kökenli olup olmadığını öğrenmek için;
 
