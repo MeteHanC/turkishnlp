@@ -3,11 +3,6 @@ Not : Türkçe dökümantasyon aşağıdadır.
 
 See [Change Log](Changelog.md)
 
-Note that version 0.0.4 is not published on Pypi so that syllabication is not available on current pip release yet. You can still download it manually and use syllabication
-
-Versiyon 0.0.4 henüz Pypi da yayınlanmadığından, heceleme şu anki pip versiyonunda kullanılabilir değil. Yine de kendiniz GitHub üzerinden projeyi indirip hecelemeyi kullanabilirsiniz
-
-
 
 # Turkish NLP with Python
 
@@ -88,6 +83,31 @@ And it will give you ;
 
 "[['hiç'], ['u', 'nut', 'ma', 'dım,'], ['do', 'ğu', 'dan'], ['e', 'sen'], ['ha', 'fif'], ['bir'], ['yel'], ['saç', 'la', 'rı', 'nı'], ['dal', 'ga', 'lan', 'dı', 'rı', 'yor', 'du']]"
 
+### Vowel Harmony
+
+This is a Turkish language rule. You can check if a word is vowel harmonic by doing this;
+
+
+```
+obj.is_vowel_harmonic("Belki")
+```
+Which will return True, since it is vowel harmonic.
+
+### Is Turkish Origin
+
+Again there are Turkish language rules so you can check if a word is Turkish origin or not. For example;
+The word 'program' is not a Turkish word. Lets try and check;
+
+```
+obj.is_turkish_origin("program")
+```
+Returns false. On the other hand the word 'yazılım';
+
+```
+obj.is_turkish_origin("yazılım")
+```
+Gives us True
+
 # Python ile Türkçe Dil İşleme
 
 TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Türkçe yazım hatalarını düzeltme ve kelimeleri hecelere ayrıma olmak üzere 3 ana fonksiyonu var
@@ -157,3 +177,26 @@ obj.syllabicate_sentence("Hiç unutmadım, doğudan esen hafif bir yel saçları
 Yapıyoruz. Ve dönen sonuç;
 
 "[['hiç'], ['u', 'nut', 'ma', 'dım,'], ['do', 'ğu', 'dan'], ['e', 'sen'], ['ha', 'fif'], ['bir'], ['yel'], ['saç', 'la', 'rı', 'nı'], ['dal', 'ga', 'lan', 'dı', 'rı', 'yor', 'du']]"
+
+### Büyük Ünlü Uyumu
+
+Herhangi bir kelimenin büyük ünlü uyumuna uyup uymadığını şu şekilde kontrol edebiliriz;
+
+```
+obj.is_vowel_harmonic("Belki")
+```
+'belki' kelimesi büyük ünlü uyumuna uyduğundan bu işlem bize True döndürecektir
+
+### Is Turkish Origin
+
+Bir kelimenin Türkçe kökenli olup olmadığını öğrenmek için çeşitli kurallar var. turkishnlp kütüphanesiyle 'program' kelimesinin türkçe kökenli olup olmadığını öğrenmek için;
+
+```
+obj.is_turkish_origin("program")
+```
+Yapıyoruz ve bize False değeri döndürüyor. Öte yandan 'yazılım' kelimesi için
+
+```
+obj.is_turkish_origin("yazılım")
+```
+Yapıyoruz ve bize True değerini döndürüyor
