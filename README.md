@@ -7,7 +7,18 @@ Note that version 0.0.4 is not published on Pypi so that syllabication is not av
 
 Versiyon 0.0.4 henüz Pypi da yayınlanmadığından, heceleme şu anki pip versiyonunda kullanılabilir değil. Yine de kendiniz GitHub üzerinden projeyi indirip hecelemeyi kullanabilirsiniz
 
+
+
 # Turkish NLP with Python
+
+## Performance 
+
+|  Method    | Execution Time (ms) | Words Count|
+|------------|----------|----------|
+| auto_correct                     | 135 ms                  | 1000 words |
+| is_turkish                       | 1 ms                    | 1000 words |
+| syllabicate_sentence             | 94 ms                   | 1000 words |
+
 
 Very early version of the TurkishNLP. For now it has basically 3 main functions; Detecting Turkish Language, correcting typos and syllabication in Turkish words.
 
