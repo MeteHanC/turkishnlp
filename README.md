@@ -8,6 +8,8 @@ See [Change Log](Changelog.md)
 
 ## Performance 
 
+**System : Processor : 1,6 GHz Intel Core i5 , RAM : 8 GB 1600 MHZ DDR3 , Macbook Air
+
 |  Method    | Execution Time (ms) | Words Count|
 |------------|----------|----------|
 | auto_correct                     | 135 ms                  | 1000 words |
