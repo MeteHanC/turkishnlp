@@ -17,7 +17,9 @@ class TurkishNLP:
         self.alphabet = {'a', 'b', 'c', 'ç', 'd', 'e', 'f', 'g', 'ğ', 'h', 'i', 'ı', 'j', 'k', 'l', 'm',
                          'n', 'o', 'ö', 'p', 'q', 'r', 's', 'ş', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z', '-',
                                                                                                     ':', '='}
-        self.vowels = {'a', 'ı', 'o', 'u', 'e', 'i', 'ö', 'ü'}
+        self.vowels_1 = {'a', 'ı', 'o', 'u'}
+        self.vowels_2 = {'e', 'i', 'ö', 'ü'}
+        self.vowels = self.vowels_1.union(self.vowels_2)
         self.counted_words = None
 
     def create_word_set(self):
@@ -215,3 +217,40 @@ class TurkishNLP:
         """
         words_list = self.list_words(sentence)
         return list(map(self.syllabicate, words_list))
+
+    def is_vowel_harmonic(self, word):
+        """
+
+        :param word: Takes the word as param
+        :return: Returns if it is vowel harmonic
+        """
+        word = word.lower()
+        vowels_1 = [1 if letter in self.vowels_1 else 0 for letter in word if letter in self.vowels]
+        return False if 1 in vowels_1 and 0 in vowels_1 else True
+
+    def is_turkish_origin(self, word):
+        """
+
+        :param word: Takes the word as param
+        :return: Returns if it is Turkish origin
+        """
+        word = word.lower()
+        if not self.is_vowel_harmonic(word) or 'j' in word or 'h' in word:
+            return False
+        syllabicated = self.syllabicate(word)
+        syllab_ = ''.join(syllabicated[1:])
+        if len(syllabicated[0]) == 1 and syllabicated[0] not in self.vowels or 'o' in syllab_ or 'ö' in syllab_:
+            return False
+
+        return True
+
+    def turkish_origin_accuracy(self, sentence):
+        """
+
+        :param sentence: Sentence to be checked
+        :return: Returns the accuracy, turkish origin words / words in total
+        """
+        word_list = self.list_words(sentence)
+        turkish_origin_words = [i for i in list(map(self.is_turkish_origin, word_list)) if i]
+        return len(turkish_origin_words) / len(word_list)
+
