@@ -17,7 +17,7 @@ See [Change Log](Changelog.md)
 | syllabicate_sentence             | 94 ms                   | 1000 words |
 
 
-Very early version of the TurkishNLP. For now it has basically 3 main functions; Detecting Turkish Language, correcting typos and syllabication in Turkish words.
+Very early version of the TurkishNLP. For now it has basically 5 main functions; Detecting Turkish Language, correcting typos, vowel harmonic detection, Turkish origin detection and syllabication in Turkish words.
 
 ## Dataset
 Dataset was created by parsing and filtering a Turkish wikipedia dump. 
@@ -26,6 +26,10 @@ Dataset was created by parsing and filtering a Turkish wikipedia dump.
 To get started first you need to install the package. With using pip;
 ```
 pip install turkishnlp
+```
+And you can install the most recent version by;
+```
+pip install --upgrade turkishnlp
 ```
 After installing the package succesfully try and import the package.
 
@@ -53,7 +57,7 @@ obj.create_word_set()
 And it will create the wordset and necesary dictionaries.
 
 ### Example Usage
-So there are 3 main functions, detecting if the language is Turkish, Turkish typo correction and syllabication.
+So there are 5 main functions, detecting if the language is Turkish, Turkish typo correction, vowel harmony detection, Turkish origin detection and syllabication.
 
 ### Language Detection
 ```
@@ -112,7 +116,7 @@ Gives us True
 
 # Python ile Türkçe Dil İşleme
 
-TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Türkçe yazım hatalarını düzeltme ve kelimeleri hecelere ayrıma olmak üzere 3 ana fonksiyonu var
+TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Türkçe yazım hatalarını düzeltme, büyük ünlü uyumu kontrolü, Türkçe köken kontrolü ve kelimeleri hecelere ayrıma olmak üzere 5 ana fonksiyonu var
 
 ## Veri
 Veri kümesi wikipedia'nın Türkçe dump'ı parselanıp temizlenerek oluşturuldu.
@@ -121,6 +125,10 @@ Veri kümesi wikipedia'nın Türkçe dump'ı parselanıp temizlenerek oluşturul
 Öncelikle başlamadan, pip ile kütüphaneyi yüklemeniz gerekiyor. Şu şekilde;
 ```
 pip install turkishnlp
+```
+Ayrıca şu şekilde yayınlanan son versiyonu indirebilirsiniz;
+```
+pip install --upgrade turkishnlp
 ```
 Yükledikten sonra kütüphaneyi şu şekilde import etmeyi deneyin;
 
@@ -148,7 +156,7 @@ obj.create_word_set()
 Yapıyoruz ve işlem tamamlanmış oluyor
 
 ### Örnek Kullanım
-Başlıkta da belirttiğim gibi temel olarak 3 metod var.
+Başlıkta da belirttiğim gibi temel olarak 5 metod var.
 
 ### Türkçe Dil Tespiti
 
