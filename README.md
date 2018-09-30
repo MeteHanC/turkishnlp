@@ -3,15 +3,12 @@ Not : Türkçe dökümantasyon aşağıdadır.
 
 See [Change Log](Changelog.md)
 
-Note that version 0.0.4 is not published on Pypi so that syllabication is not available on current pip release yet. You can still download it manually and use syllabication
-
-Versiyon 0.0.4 henüz Pypi da yayınlanmadığından, heceleme şu anki pip versiyonunda kullanılabilir değil. Yine de kendiniz GitHub üzerinden projeyi indirip hecelemeyi kullanabilirsiniz
-
-
 
 # Turkish NLP with Python
 
 ## Performance 
+
+**System : Processor : 1,6 GHz Intel Core i5 , RAM : 8 GB 1600 MHZ DDR3 , Macbook Air
 
 |  Method    | Execution Time (ms) | Words Count|
 |------------|----------|----------|
@@ -20,7 +17,7 @@ Versiyon 0.0.4 henüz Pypi da yayınlanmadığından, heceleme şu anki pip vers
 | syllabicate_sentence             | 94 ms                   | 1000 words |
 
 
-Very early version of the TurkishNLP. For now it has basically 3 main functions; Detecting Turkish Language, correcting typos and syllabication in Turkish words.
+Very early version of the TurkishNLP. For now it has basically 5 main functions; Detecting Turkish Language, correcting typos, vowel harmonic detection, Turkish origin detection and syllabication in Turkish words.
 
 ## Dataset
 Dataset was created by parsing and filtering a Turkish wikipedia dump. 
@@ -29,6 +26,10 @@ Dataset was created by parsing and filtering a Turkish wikipedia dump.
 To get started first you need to install the package. With using pip;
 ```
 pip install turkishnlp
+```
+And you can install the most recent version by;
+```
+pip install --upgrade turkishnlp
 ```
 After installing the package succesfully try and import the package.
 
@@ -56,7 +57,7 @@ obj.create_word_set()
 And it will create the wordset and necesary dictionaries.
 
 ### Example Usage
-So there are 3 main functions, detecting if the language is Turkish, Turkish typo correction and syllabication.
+So there are 5 main functions, detecting if the language is Turkish, Turkish typo correction, vowel harmony detection, Turkish origin detection and syllabication.
 
 ### Language Detection
 ```
@@ -88,9 +89,34 @@ And it will give you ;
 
 "[['hiç'], ['u', 'nut', 'ma', 'dım,'], ['do', 'ğu', 'dan'], ['e', 'sen'], ['ha', 'fif'], ['bir'], ['yel'], ['saç', 'la', 'rı', 'nı'], ['dal', 'ga', 'lan', 'dı', 'rı', 'yor', 'du']]"
 
+### Vowel Harmony
+
+This is a Turkish language rule. You can check if a word is vowel harmonic by doing this;
+
+
+```
+obj.is_vowel_harmonic("Belki")
+```
+Which will return True, since it is vowel harmonic.
+
+### Is Turkish Origin
+
+Again there are Turkish language rules so you can check if a word is Turkish origin or not. For example;
+The word 'program' is not a Turkish word. Lets try and check;
+
+```
+obj.is_turkish_origin("program")
+```
+Returns false. On the other hand the word 'yazılım';
+
+```
+obj.is_turkish_origin("yazılım")
+```
+Gives us True
+
 # Python ile Türkçe Dil İşleme
 
-TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Türkçe yazım hatalarını düzeltme ve kelimeleri hecelere ayrıma olmak üzere 3 ana fonksiyonu var
+TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Türkçe yazım hatalarını düzeltme, büyük ünlü uyumu kontrolü, Türkçe köken kontrolü ve kelimeleri hecelere ayrıma olmak üzere 5 ana fonksiyonu var
 
 ## Veri
 Veri kümesi wikipedia'nın Türkçe dump'ı parselanıp temizlenerek oluşturuldu.
@@ -99,6 +125,10 @@ Veri kümesi wikipedia'nın Türkçe dump'ı parselanıp temizlenerek oluşturul
 Öncelikle başlamadan, pip ile kütüphaneyi yüklemeniz gerekiyor. Şu şekilde;
 ```
 pip install turkishnlp
+```
+Ayrıca şu şekilde yayınlanan son versiyonu indirebilirsiniz;
+```
+pip install --upgrade turkishnlp
 ```
 Yükledikten sonra kütüphaneyi şu şekilde import etmeyi deneyin;
 
@@ -126,7 +156,7 @@ obj.create_word_set()
 Yapıyoruz ve işlem tamamlanmış oluyor
 
 ### Örnek Kullanım
-Başlıkta da belirttiğim gibi temel olarak 3 metod var.
+Başlıkta da belirttiğim gibi temel olarak 5 metod var.
 
 ### Türkçe Dil Tespiti
 
@@ -157,3 +187,26 @@ obj.syllabicate_sentence("Hiç unutmadım, doğudan esen hafif bir yel saçları
 Yapıyoruz. Ve dönen sonuç;
 
 "[['hiç'], ['u', 'nut', 'ma', 'dım,'], ['do', 'ğu', 'dan'], ['e', 'sen'], ['ha', 'fif'], ['bir'], ['yel'], ['saç', 'la', 'rı', 'nı'], ['dal', 'ga', 'lan', 'dı', 'rı', 'yor', 'du']]"
+
+### Büyük Ünlü Uyumu
+
+Herhangi bir kelimenin büyük ünlü uyumuna uyup uymadığını şu şekilde kontrol edebiliriz;
+
+```
+obj.is_vowel_harmonic("Belki")
+```
+'belki' kelimesi büyük ünlü uyumuna uyduğundan bu işlem bize True döndürecektir
+
+### Türkçe Köken Kontrolü
+
+Bir kelimenin Türkçe kökenli olup olmadığını öğrenmek için çeşitli kurallar var. turkishnlp kütüphanesiyle 'program' kelimesinin türkçe kökenli olup olmadığını öğrenmek için;
+
+```
+obj.is_turkish_origin("program")
+```
+Yapıyoruz ve bize False değeri döndürüyor. Öte yandan 'yazılım' kelimesi için
+
+```
+obj.is_turkish_origin("yazılım")
+```
+Yapıyoruz ve bize True değerini döndürüyor

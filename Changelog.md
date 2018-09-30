@@ -1,15 +1,22 @@
   CHANGELOG
   ==========
   
-  ## 0.0.4 (WIP)
+  ## 0.0.5
 
 #### New features 
 
 - Added syllabication and syllabication_sentence methods. You can syllabicate a sentence or a single word. 
 
+- Added vowel harmony detection
+
+- Added Turkish Origin detection
+
+### Improvements
+
 - Converted some lists to sets in order to improve performance.
 
 - Mangled some functions which are not necessary to be accessed by the user.
+
 
  ## 0.0.3
  
