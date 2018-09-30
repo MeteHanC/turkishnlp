@@ -33,18 +33,13 @@ class TurkishNLP:
                 word_set = pickle.load(f)
                 self.all_words = word_set
         else:
-            with open("kelimeler.txt", "r") as file:
-                [self.all_words.extend(line.strip().split(",")) for line in file]
-            with open("words.pkl", "wb") as f:
-                pickle.dump(self.all_words, f)
+            raise Exception('You need to download the data first using download() function')
 
         if os.path.isfile(dir + "/words_counted.pkl"):
             with open(dir + "/words_counted.pkl", "rb") as f_count:
                 self.counted_words = pickle.load(f_count)
         else:
-            self.counted_words = Counter(self.all_words)
-            with open("words_counted.pkl", "wb") as file_count:
-                pickle.dump(self.counted_words, file_count)
+            raise Exception('You need to download the data first using download() function')
 
     def download(self):
         """
@@ -101,7 +96,7 @@ class TurkishNLP:
         accuracy = 0
 
         for word in text_array:
-            if word in self.all_words and len(word) > 2:
+            if word in self.all_words and len(word) > 1:
                     accuracy += 1
 
         accuracy = accuracy / len(text_array); print(accuracy)
