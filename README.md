@@ -33,25 +33,25 @@ pip install --upgrade turkishnlp
 ```
 After installing the package succesfully try and import the package.
 
-```
+```python
 import turkishnlp
 ```
 ### Downloading the data
 To download the data first we need to create an instance of TurkishNLP class. So we need to ;
-```
+```python
 from turkishnlp import detector
 obj = detector.TurkishNLP()
 ```
 After creating the instance we can simply call the download function like this;
 
-```
+```python
 obj.download()
 ```
 It will take shortly and after the download it will print out "Download succesful". You won't have to download the data again.
 
 ### Creating the wordset
 To create the wordset from data you need to ;
-```
+```python
 obj.create_word_set()
 ```
 And it will create the wordset and necesary dictionaries.
@@ -60,20 +60,20 @@ And it will create the wordset and necesary dictionaries.
 So there are 5 main functions, detecting if the language is Turkish, Turkish typo correction, vowel harmony detection, Turkish origin detection and syllabication.
 
 ### Language Detection
-```
+```python
 print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
 ```
 Will return us "True" along with the accuracy point which is 0.85
 
 ### Typo Correction
 
-```
+```python
 lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
 print(obj.auto_correct(lwords))
 ```
 Which will print out ['veri', 'kümesi', 'idare', 'eder', 'ancak', 'daha', 'güzel', 'olabilir']. "List_words" method simply splits the text by words with the help of regex. You can simply use "join" to make it a sentence again like this;
 
-```
+```python
 lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
 corrected_words = obj.auto_correct(lwords)
 corrected_string = " ".join(corrected_words)
@@ -82,7 +82,7 @@ Which will print out 'veri kümesi idare eder ancak daha güzel olabilir'.
 
 ### Syllabication
 
-```
+```python
 obj.syllabicate_sentence("Hiç unutmadım, doğudan esen hafif bir yel saçlarını dalgalandırıyordu")
 ```
 And it will give you ;
@@ -94,7 +94,7 @@ And it will give you ;
 This is a Turkish language rule. You can check if a word is vowel harmonic by doing this;
 
 
-```
+```python
 obj.is_vowel_harmonic("Belki")
 ```
 Which will return True, since it is vowel harmonic.
@@ -104,12 +104,12 @@ Which will return True, since it is vowel harmonic.
 Again there are Turkish language rules so you can check if a word is Turkish origin or not. For example;
 The word 'program' is not a Turkish word. Lets try and check;
 
-```
+```python
 obj.is_turkish_origin("program")
 ```
 Returns false. On the other hand the word 'yazılım';
 
-```
+```python
 obj.is_turkish_origin("yazılım")
 ```
 Gives us True
@@ -132,25 +132,25 @@ pip install --upgrade turkishnlp
 ```
 Yükledikten sonra kütüphaneyi şu şekilde import etmeyi deneyin;
 
-```
+```python
 import turkishnlp
 ```
 ### Veriyi indirmek
 Veriyi indirmek için önce TurkishNLP sınıfından türetilmiş bir obje oluşturmamız lazım;
-```
+```python
 from turkishnlp import detector
 obj = detector.TurkishNLP()
 ```
 Objeyi oluşturduktan sonra indirme metodunu şu şekilde çağırarak indirme işlemini başlatabiliriz ;
 
-```
+```python
 obj.download()
 ```
 İndirme işlemi çok uzun sürmeden bitecek ve ardından "Download Succesful" yani indirme başarılı manasına gelen bir yazı ekrana basılacak
 
 ### Verisetini oluşturmak
 İndirdiğimiz veriden kodun içinde kullanacağımız verisetlerini oluşturmak için basitce;
-```
+```python
 obj.create_word_set()
 ```
 Yapıyoruz ve işlem tamamlanmış oluyor
@@ -160,20 +160,20 @@ Başlıkta da belirttiğim gibi temel olarak 5 metod var.
 
 ### Türkçe Dil Tespiti
 
-```
+```python
 print(obj.is_turkish("Ben bugün ankaraya gideceğim belki birşeyler alırım"))
 ```
 Yaptığında göreceğiz ki, ekrana "True" bastırıyor ve doğruluk oranı olarak 0.85 döndürüyor.
 
 ### Yazım Hatası Düzeltme
 
-```
+```python
 lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
 print(obj.auto_correct(lwords))
 ```
 Yapıyoruz ve sonuç olarak bize ['veri', 'kümesi', 'idare', 'eder', 'ancak', 'daha', 'güzel', 'olabilir'] listesi veriliyor. Burada "list_words" metodunun yaptığı string olarak gelen texti regex yardımıyla kelimelerine ayırmaktır Kelimeleri birleştirmek için Python'ın "join" metodu kullanılabilir. Örneğin;
 
-```
+```python
 lwords = obj.list_words("vri kümsi idrae edre ancaka daha güezl oalbilir")
 corrected_words = obj.auto_correct(lwords)
 corrected_string = " ".join(corrected_words)
@@ -181,7 +181,7 @@ corrected_string = " ".join(corrected_words)
 Yazdıracağı sonuç : 'veri kümesi idare eder ancak daha güzel olabilir'. 
 
 ### Hecelere Ayırmak 
-```
+```python
 obj.syllabicate_sentence("Hiç unutmadım, doğudan esen hafif bir yel saçlarını dalgalandırıyordu")
 ```
 Yapıyoruz. Ve dönen sonuç;
@@ -192,7 +192,7 @@ Yapıyoruz. Ve dönen sonuç;
 
 Herhangi bir kelimenin büyük ünlü uyumuna uyup uymadığını şu şekilde kontrol edebiliriz;
 
-```
+```python
 obj.is_vowel_harmonic("Belki")
 ```
 'belki' kelimesi büyük ünlü uyumuna uyduğundan bu işlem bize True döndürecektir
@@ -201,12 +201,12 @@ obj.is_vowel_harmonic("Belki")
 
 Bir kelimenin Türkçe kökenli olup olmadığını öğrenmek için çeşitli kurallar var. turkishnlp kütüphanesiyle 'program' kelimesinin türkçe kökenli olup olmadığını öğrenmek için;
 
-```
+```python
 obj.is_turkish_origin("program")
 ```
 Yapıyoruz ve bize False değeri döndürüyor. Öte yandan 'yazılım' kelimesi için
 
-```
+```python
 obj.is_turkish_origin("yazılım")
 ```
 Yapıyoruz ve bize True değerini döndürüyor
