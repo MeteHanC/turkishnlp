@@ -1,4 +1,3 @@
-
 import re
 import pickle
 import os
@@ -51,8 +50,8 @@ class TurkishNLP:
         if not os.path.exists(dir):
             os.makedirs(dir)
 
-        urllib.request.urlretrieve("http://metehancetinkaya.com/datanlp/words.pkl", dir + "/words.pkl")
-        urllib.request.urlretrieve("http://metehancetinkaya.com/datanlp/words_counted.pkl", dir + "/words_counted.pkl")
+        urllib.request.urlretrieve("http://turkish-nlp.com/datanlp/words.pkl", dir + "/words.pkl")
+        urllib.request.urlretrieve("http://turkish-nlp.com/datanlp/words_counted.pkl", dir + "/words_counted.pkl")
         print("Download is successful")
 
     @staticmethod
