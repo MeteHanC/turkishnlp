@@ -3,7 +3,7 @@ import setuptools
 
 setup(
     name="turkishnlp",
-    version="0.0.5",
+    version="0.0.6",
     packages=['turkishnlp'],
     description="A python script that processes Turkish language",
     long_description=open('README.md').read(),

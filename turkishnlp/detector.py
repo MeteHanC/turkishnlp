@@ -1,7 +1,7 @@
 import re
 import pickle
 import os
-from collections import Counter
+from math import log
 import sys
 import urllib.request
 
@@ -15,11 +15,13 @@ class TurkishNLP:
         self.all_words = None
         self.alphabet = {'a', 'b', 'c', 'ç', 'd', 'e', 'f', 'g', 'ğ', 'h', 'i', 'ı', 'j', 'k', 'l', 'm',
                          'n', 'o', 'ö', 'p', 'q', 'r', 's', 'ş', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z', '-',
-                                                                                                    ':', '='}
+                         ':', '='}
         self.vowels_1 = {'a', 'ı', 'o', 'u'}
         self.vowels_2 = {'e', 'i', 'ö', 'ü'}
         self.vowels = self.vowels_1.union(self.vowels_2)
         self.counted_words = None
+        self.word_cost = None
+        self.longest_word = 0
 
     def create_word_set(self):
         """
@@ -31,12 +33,22 @@ class TurkishNLP:
             with open(dir + "/words.pkl", "rb") as f:
                 word_set = pickle.load(f)
                 self.all_words = word_set
+
         else:
             raise Exception('You need to download the data first using download() function')
 
         if os.path.isfile(dir + "/words_counted.pkl"):
             with open(dir + "/words_counted.pkl", "rb") as f_count:
                 self.counted_words = pickle.load(f_count)
+        else:
+            raise Exception('You need to download the data first using download() function')
+
+        if os.path.isfile(dir + "/words_alt.pkl"):
+            with open(dir + "/words_alt.pkl", "rb") as f_count:
+                words_alt = pickle.load(f_count)
+                self.word_cost = dict(
+                    (k, log((i + 1) * log(len(words_alt)))) for i, k in enumerate(words_alt))
+                self.longest_word = max(len(x) for x in words_alt)
         else:
             raise Exception('You need to download the data first using download() function')
 
@@ -52,6 +64,7 @@ class TurkishNLP:
 
         urllib.request.urlretrieve("http://turkish-nlp.com/datanlp/words.pkl", dir + "/words.pkl")
         urllib.request.urlretrieve("http://turkish-nlp.com/datanlp/words_counted.pkl", dir + "/words_counted.pkl")
+        urllib.request.urlretrieve("http://turkish-nlp.com/datanlp/words_alt.pkl", dir + "/words_alt.pkl")
         print("Download is successful")
 
     @staticmethod
@@ -96,9 +109,10 @@ class TurkishNLP:
 
         for word in text_array:
             if word in self.all_words and len(word) > 1:
-                    accuracy += 1
+                accuracy += 1
 
-        accuracy = accuracy / len(text_array); print(accuracy)
+        accuracy = accuracy / len(text_array);
+        print(accuracy)
         return True if accuracy > 0.65 else False
 
     def is_turkish(self, input_text):
@@ -247,4 +261,26 @@ class TurkishNLP:
         word_list = self.list_words(sentence)
         turkish_origin_words = [i for i in list(map(self.is_turkish_origin, word_list)) if i]
         return len(turkish_origin_words) / len(word_list)
+
+    def __find_match(self, i, cost, keyword):
+        possible_values = reversed(cost[max(0, i - self.longest_word):i])
+        a = min(
+            (c + self.word_cost.get(keyword[i - k - 1:i], float('inf')), k + 1) for k, c in enumerate(possible_values))
+        return a
+
+    def correct_text_without_space(self, keyword):
+        cost = [0]
+        for i in range(1, len(keyword) + 1):
+            c, k = self.__find_match(i, cost, keyword)
+            cost.append(c)
+
+        out = []
+        ij = len(keyword)
+        while ij > 0:
+            c, k = self.__find_match(ij, cost, keyword)
+            out.append(keyword[ij - k:ij])
+            ij -= k
+
+        return " ".join(reversed(out))
+
 
