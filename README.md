@@ -17,7 +17,7 @@ See [Change Log](Changelog.md)
 | syllabicate_sentence             | 94 ms                   | 1000 words |
 
 
-Very early version of the TurkishNLP. For now it has basically 5 main functions; Detecting Turkish Language, correcting typos, vowel harmonic detection, Turkish origin detection and syllabication in Turkish words.
+Very early version of the TurkishNLP. For now it has basically 5 main functions; Detecting Turkish Language, correcting text without whitespace, correcting typos, vowel harmonic detection, Turkish origin detection and syllabication in Turkish words.
 
 ## Dataset
 Dataset was created by parsing and filtering a Turkish wikipedia dump. 
@@ -114,9 +114,25 @@ obj.is_turkish_origin("yazılım")
 ```
 Gives us True
 
+### Correct Text Without WhiteSpace
+Important Note : Since this function is based on an another dataset, you need to re-call download function again.
+
+As it is said in the title this function corrects the text without whitespace. For example you have the word 'türkçedoğaldilişleme'. We call the function and pass the word as the param;
+```python
+obj.correct_text_without_space('türkçedoğaldilişleme')
+```
+Will return us ; 'türkçe doğal dil işleme' as expected. Lets try something longer a random text I have found; 'hidroelektriksantralbarajlardasuyunenerjisikullanılırakelektrikenerjisiüretilensantralehidroelektriksantraladıverilir'
+
+```python
+obj.correct_text_without_space('hidroelektriksantralbarajlardasuyunenerjisikullanılırakelektrikenerjisiüretilensantralehidroelektriksantraladıverilir')
+```
+Will return ; 'hidroelektrik santral baraj l arın da suyun enerjisi kullan ı l ırak elektrik enerjisi üretilen santral e hidroelektrik santral adı veri lir'. As you can see this function is not %100 accurate since it is very dependant on the dataset. If someone to create a clear dataset for this function, I think it will run very smooth with this current approach.
+
+
+
 # Python ile Türkçe Dil İşleme
 
-TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Türkçe yazım hatalarını düzeltme, büyük ünlü uyumu kontrolü, Türkçe köken kontrolü ve kelimeleri hecelere ayrıma olmak üzere 5 ana fonksiyonu var
+TurkishNLP kütüphanesinin alfa versiyonu. Şimdilik Türkçe dilini tespit etme, Boşluksuz yazılan yazıyı boşluklarına ayırma, Türkçe yazım hatalarını düzeltme, büyük ünlü uyumu kontrolü, Türkçe köken kontrolü ve kelimeleri hecelere ayrıma olmak üzere 5 ana fonksiyonu var
 
 ## Veri
 Veri kümesi wikipedia'nın Türkçe dump'ı parselanıp temizlenerek oluşturuldu.
@@ -210,3 +226,18 @@ Yapıyoruz ve bize False değeri döndürüyor. Öte yandan 'yazılım' kelimesi
 obj.is_turkish_origin("yazılım")
 ```
 Yapıyoruz ve bize True değerini döndürüyor
+
+### Boşluksuz Yazılan Yazıyı Düzeltme
+Önemli Not : Bu fonksiyon farklı bir verikümesine bağlı olduğundan, download fonksiyonunu tekrar çalıştırmanız gerekecektir.
+
+Bu fonksiyon başlıkta da belirtildiği gibi boşluksuz olarak yazılan bir yazıyı, boşluklarına ayırıyor. Örneğin,  'türkçedoğaldilişleme' kelimesine sahip olduğumuzu düşünelim. Fonksiyonu çağırıp kelimeyi parametre olarak geçtiğimizde;
+```python
+obj.correct_text_without_space('türkçedoğaldilişleme')
+```
+Bize beklendiği gibi ; 'türkçe doğal dil işleme' dönecek. Şimdi internetten rastgele bulup boşluklarını sildiğim bir yazıyı deneyelim; 'hidroelektriksantralbarajlardasuyunenerjisikullanılırakelektrikenerjisiüretilensantralehidroelektriksantraladıverilir'
+
+```python
+obj.correct_text_without_space('hidroelektriksantralbarajlardasuyunenerjisikullanılırakelektrikenerjisiüretilensantralehidroelektriksantraladıverilir')
+```
+Bize ; 'hidroelektrik santral baraj l arın da suyun enerjisi kullan ı l ırak elektrik enerjisi üretilen santral e hidroelektrik santral adı veri lir'. Görüldüğü üzere bu fonksiyon kelime kümesine de fazla bağlı olduğu için %100 doğruluk oranıyla çalışmadı. Ancak temiz bir veri kümesi oluşturulduğu takdirde bu yaklaşımla çok daha yüksek bir doğruluk oranı yakalanacağını düşünüyorum.
+
