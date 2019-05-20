@@ -4,7 +4,8 @@
 
 /dist
 /turkishnlp.egg-info
-
+turkishnlp.egg-info
+dist
 # User-specific stuff
 .idea/**/workspace.xml
 .idea/**/tasks.xml

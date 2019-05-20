@@ -282,8 +282,3 @@ class TurkishNLP:
             ij -= k
 
         return " ".join(reversed(out))
-
-
-obj = TurkishNLP()
-obj.create_word_set()
-print(obj.correct_text_without_space('hidroelektriksantralbarajlardasuyunenerjisikullanılırakelektrikenerjisiüretilensantralehidroelektriksantraladıverilir'))
