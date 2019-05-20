@@ -126,7 +126,7 @@ Will return us ; 'türkçe doğal dil işleme' as expected. Lets try something l
 ```python
 obj.correct_text_without_space('hidroelektriksantralbarajlardasuyunenerjisikullanılırakelektrikenerjisiüretilensantralehidroelektriksantraladıverilir')
 ```
-Will return ; 'hidroelektrik santral baraj l arın da suyun enerjisi kullan ı l ırak elektrik enerjisi üretilen santral e hidroelektrik santral adı veri lir'. As you can see this function is not %100 accurate since it is very dependant on the dataset. If someone to create a clear dataset for this function, I think it will run very smooth with this current approach.
+Will return ; 'hidroelektrik santral baraj l arın da suyun enerjisi kullan ı l ırak elektrik enerjisi üretilen santral e hidroelektrik santral adı veri lir'. As you can see this function is not %100 accurate since it is very dependant on the dataset. If someone to create a clear dataset for this function, I think it will run very smooth with this current approach. Note : This function does not exist in the current Pypi release
 
 
 
@@ -239,5 +239,5 @@ Bize beklendiği gibi ; 'türkçe doğal dil işleme' dönecek. Şimdi internett
 ```python
 obj.correct_text_without_space('hidroelektriksantralbarajlardasuyunenerjisikullanılırakelektrikenerjisiüretilensantralehidroelektriksantraladıverilir')
 ```
-Bize ; 'hidroelektrik santral baraj l arın da suyun enerjisi kullan ı l ırak elektrik enerjisi üretilen santral e hidroelektrik santral adı veri lir'. Görüldüğü üzere bu fonksiyon kelime kümesine de fazla bağlı olduğu için %100 doğruluk oranıyla çalışmadı. Ancak temiz bir veri kümesi oluşturulduğu takdirde bu yaklaşımla çok daha yüksek bir doğruluk oranı yakalanacağını düşünüyorum.
+Bize ; 'hidroelektrik santral baraj l arın da suyun enerjisi kullan ı l ırak elektrik enerjisi üretilen santral e hidroelektrik santral adı veri lir'. Görüldüğü üzere bu fonksiyon kelime kümesine de fazla bağlı olduğu için %100 doğruluk oranıyla çalışmadı. Ancak temiz bir veri kümesi oluşturulduğu takdirde bu yaklaşımla çok daha yüksek bir doğruluk oranı yakalanacağını düşünüyorum. Not : Bu fonksiyon Pypi release'inde mevcut değil
 
