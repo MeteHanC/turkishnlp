@@ -13,9 +13,9 @@ class TurkishNLP:
         Initiating the class.
         """
         self.all_words = None
+        self.specials = {'-', ':', '='}
         self.alphabet = {'a', 'b', 'c', 'ç', 'd', 'e', 'f', 'g', 'ğ', 'h', 'i', 'ı', 'j', 'k', 'l', 'm',
-                         'n', 'o', 'ö', 'p', 'q', 'r', 's', 'ş', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z', '-',
-                         ':', '='}
+                         'n', 'o', 'ö', 'p', 'q', 'r', 's', 'ş', 't', 'u', 'ü', 'v', 'w', 'x', 'y', 'z'}.union(self.specials)
         self.vowels_1 = {'a', 'ı', 'o', 'u'}
         self.vowels_2 = {'e', 'i', 'ö', 'ü'}
         self.vowels = self.vowels_1.union(self.vowels_2)
