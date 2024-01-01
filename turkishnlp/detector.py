@@ -66,6 +66,7 @@ class TurkishNLP:
         urllib.request.urlretrieve("http://turkish-nlp.com/datanlp/words_counted.pkl", dir + "/words_counted.pkl")
         urllib.request.urlretrieve("http://turkish-nlp.com/datanlp/words_alt.pkl", dir + "/words_alt.pkl")
         print("Download is successful")
+        return self
 
     @staticmethod
     def __get_directory():
